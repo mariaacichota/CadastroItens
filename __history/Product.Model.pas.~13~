@@ -1,0 +1,113 @@
+unit Product.Model;
+
+interface
+
+uses
+  FireDAC.Comp.Client, System.SysUtils;
+
+type
+  TProduct = class
+  private
+    FID: Integer;
+    FName: string;
+    FDescription: string;
+    FPrice: Double;
+  public
+    property ID: Integer read FID write FID;
+    property Name: string read FName write FName;
+    property Description: string read FDescription write FDescription;
+    property Price: Double read FPrice write FPrice;
+
+    function SaveToDatabase(AConnection: TFDConnection): Boolean;
+    function DeleteFromDatabase(AConnection: TFDConnection; AID: Integer): Boolean;
+    class function LoadFromDatabase(AConnection: TFDConnection; AID: Integer): TProduct;
+  end;
+
+implementation
+
+uses
+  Vcl.Dialogs;n
+{ TProduct }
+
+function TProduct.SaveToDatabase(AConnection: TFDConnection): Boolean;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := AConnection;
+    if FID = 0 then
+    begin
+      FDQuery.SQL.Text := 'INSERT INTO tab_item (item_name, item_description, price) VALUES (:name, :description, :price)';
+    end
+    else
+    begin
+      FDQuery.SQL.Text := 'UPDATE tab_item SET item_name = :name, item_description = :description, price = :price WHERE item_id = :id';
+      FDQuery.ParamByName('id').AsInteger := FID;
+    end;
+
+    FDQuery.ParamByName('name').AsString := FName;
+    FDQuery.ParamByName('description').AsString := FDescription;
+    FDQuery.ParamByName('price').AsFloat := FPrice;
+    FDQuery.ExecSQL;
+
+    Result := True;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function TProduct.DeleteFromDatabase(AConnection: TFDConnection; AID: Integer): Boolean;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := AConnection;
+    FDQuery.SQL.Text := 'DELETE FROM tab_item WHERE item_id = :id';
+    FDQuery.ParamByName('id').AsInteger := AID;
+    FDQuery.ExecSQL;
+
+    Result := True;
+  except
+    on E: Exception do
+    begin
+      if Pos('foreign key constraint fails', E.Message) > 0 then
+        ShowMessage('Unable to delete the product because there are orders that depend on it.')
+      else
+        ShowMessage('An error occurred: ' + E.Message);
+    end;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+class function TProduct.LoadFromDatabase(AConnection: TFDConnection; AID: Integer): TProduct;
+var
+  FDQuery: TFDQuery;
+  Product: TProduct;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := AConnection;
+    FDQuery.SQL.Text := 'SELECT * FROM tab_item WHERE item_id = :id';
+    FDQuery.ParamByName('id').AsInteger := AID;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      Product := TProduct.Create;
+      Product.ID := FDQuery.FieldByName('item_id').AsInteger;
+      Product.Name := FDQuery.FieldByName('item_name').AsString;
+      Product.Description := FDQuery.FieldByName('item_description').AsString;
+      Product.Price := FDQuery.FieldByName('price').AsFloat;
+      Result := Product;
+    end
+    else
+      Result := nil;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+end.

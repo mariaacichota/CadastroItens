@@ -1,0 +1,28 @@
+object frmAuxiliary: TfrmAuxiliary
+  Left = 0
+  Top = 0
+  Caption = 'Auxiliary Form'
+  ClientHeight = 245
+  ClientWidth = 291
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlGeneral: TPanel
+    Left = 0
+    Top = 0
+    Width = 291
+    Height = 245
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 248
+    ExplicitTop = 192
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+  end
+end

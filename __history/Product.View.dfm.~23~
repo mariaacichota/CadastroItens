@@ -1,0 +1,789 @@
+object frmProductManagement: TfrmProductManagement
+  Left = 0
+  Top = 0
+  Caption = 'Product Management'
+  ClientHeight = 468
+  ClientWidth = 805
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object cxPageControl1: TcxPageControl
+    Left = 0
+    Top = 0
+    Width = 805
+    Height = 468
+    Align = alClient
+    TabOrder = 0
+    Properties.ActivePage = tabOrder
+    Properties.CustomButtons.Buttons = <>
+    ExplicitLeft = 312
+    ExplicitTop = 248
+    ExplicitWidth = 289
+    ExplicitHeight = 193
+    ClientRectBottom = 464
+    ClientRectLeft = 4
+    ClientRectRight = 801
+    ClientRectTop = 24
+    object tabOrder: TcxTabSheet
+      Caption = 'Order'
+      ImageIndex = 0
+      object pnlGeneral: TPanel
+        Left = 0
+        Top = 0
+        Width = 797
+        Height = 440
+        Align = alClient
+        TabOrder = 0
+        ExplicitWidth = 805
+        ExplicitHeight = 468
+        object pnlGrid: TPanel
+          Left = 1
+          Top = 105
+          Width = 795
+          Height = 334
+          Align = alClient
+          TabOrder = 0
+          ExplicitWidth = 803
+          ExplicitHeight = 362
+          object DBGrid1: TDBGrid
+            Left = 1
+            Top = 1
+            Width = 793
+            Height = 332
+            Align = alClient
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+        end
+        object pnlTop: TPanel
+          Left = 1
+          Top = 1
+          Width = 795
+          Height = 104
+          Align = alTop
+          TabOrder = 1
+          ExplicitWidth = 803
+          object pnlActions: TPanel
+            Left = 1
+            Top = 1
+            Width = 793
+            Height = 40
+            Align = alTop
+            TabOrder = 0
+            ExplicitWidth = 801
+            object btnNewOrder: TcxButton
+              Left = 13
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'New Order'
+              TabOrder = 0
+            end
+            object btnSaveOrder: TcxButton
+              Left = 94
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'Save'
+              TabOrder = 1
+            end
+            object btnDeleteOrder: TcxButton
+              Left = 175
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'Delete'
+              TabOrder = 2
+            end
+            object btnOrderReport: TcxButton
+              Left = 640
+              Top = 6
+              Width = 146
+              Height = 25
+              Caption = 'Generate Order Report'
+              TabOrder = 3
+            end
+          end
+          object pnlProductOrder: TPanel
+            Left = 1
+            Top = 41
+            Width = 793
+            Height = 62
+            Align = alClient
+            TabOrder = 1
+            ExplicitLeft = 0
+            ExplicitTop = 38
+            object lblOrderId: TLabel
+              Left = 8
+              Top = 9
+              Width = 50
+              Height = 13
+              Caption = 'Order Id:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblClientId: TLabel
+              Left = 157
+              Top = 9
+              Width = 50
+              Height = 13
+              Caption = 'Client Id:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblClientName: TLabel
+              Left = 142
+              Top = 36
+              Width = 3
+              Height = 13
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clHotLight
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object Label2: TLabel
+              Left = 232
+              Top = -16
+              Width = 31
+              Height = 13
+              Caption = 'Label2'
+            end
+            object btnLoadOrder: TcxButton
+              Left = 302
+              Top = 4
+              Width = 115
+              Height = 25
+              Caption = 'Load Order'
+              TabOrder = 0
+            end
+            object edtOrderId: TcxTextEdit
+              Left = 64
+              Top = 6
+              TabOrder = 1
+              Width = 83
+            end
+            object edtClientId: TcxTextEdit
+              Left = 213
+              Top = 6
+              TabOrder = 2
+              Width = 83
+            end
+          end
+        end
+      end
+    end
+    object tabProduct: TcxTabSheet
+      Caption = 'Product'
+      ImageIndex = 1
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 797
+        Height = 440
+        Align = alClient
+        TabOrder = 0
+        ExplicitWidth = 805
+        ExplicitHeight = 468
+        object Panel2: TPanel
+          Left = 1
+          Top = 105
+          Width = 795
+          Height = 334
+          Align = alClient
+          TabOrder = 0
+          object DBGrid2: TDBGrid
+            Left = 1
+            Top = 1
+            Width = 793
+            Height = 332
+            Align = alClient
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+        end
+        object Panel3: TPanel
+          Left = 1
+          Top = 1
+          Width = 795
+          Height = 104
+          Align = alTop
+          TabOrder = 1
+          ExplicitLeft = 2
+          ExplicitTop = -4
+          object Panel4: TPanel
+            Left = 1
+            Top = 1
+            Width = 793
+            Height = 40
+            Align = alTop
+            TabOrder = 0
+            object btnNewProduct: TcxButton
+              Left = 8
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'New Product'
+              TabOrder = 0
+            end
+            object btnSaveProduct: TcxButton
+              Left = 89
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'Save'
+              TabOrder = 1
+            end
+            object btnDeleteProduct: TcxButton
+              Left = 181
+              Top = 9
+              Width = 75
+              Height = 25
+              Caption = 'Delete'
+              TabOrder = 2
+            end
+          end
+          object Panel5: TPanel
+            Left = 1
+            Top = 41
+            Width = 793
+            Height = 62
+            Align = alClient
+            TabOrder = 1
+            ExplicitLeft = 0
+            object lblProductPrice: TLabel
+              Left = 571
+              Top = 9
+              Width = 31
+              Height = 13
+              Caption = 'Price:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblProductName: TLabel
+              Left = 248
+              Top = 8
+              Width = 35
+              Height = 13
+              Caption = 'Name:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblProductId: TLabel
+              Left = 60
+              Top = 8
+              Width = 15
+              Height = 13
+              Caption = 'Id:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblDescriptionProduct: TLabel
+              Left = 8
+              Top = 34
+              Width = 67
+              Height = 13
+              Caption = 'Description:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object edtProductId: TcxTextEdit
+              Left = 81
+              Top = 6
+              TabOrder = 0
+              Width = 83
+            end
+            object edtProductDescription: TcxTextEdit
+              Left = 81
+              Top = 33
+              TabOrder = 1
+              Width = 648
+            end
+            object edtProductPrice: TcxTextEdit
+              Left = 608
+              Top = 6
+              TabOrder = 2
+              Width = 121
+            end
+            object edtProductName: TcxTextEdit
+              Left = 289
+              Top = 6
+              TabOrder = 3
+              Width = 248
+            end
+            object btnLoadProduct: TcxButton
+              Left = 170
+              Top = 3
+              Width = 55
+              Height = 25
+              Caption = 'Load'
+              TabOrder = 4
+            end
+          end
+        end
+      end
+    end
+  end
+  object frxReport1: TfrxReport
+    Version = '5.3.14'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45555.151772569400000000
+    ReportOptions.LastChange = 45555.182514409720000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 673
+    Top = 297
+    Datasets = <
+      item
+        DataSet = frxDBOrder
+        DataSetName = 'frxDBDataSet1'
+      end
+      item
+        DataSet = frxDBClient
+        DataSetName = 'frxDBClient'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Height = 94.488250000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 204.094620000000000000
+          Top = 6.102350000000001000
+          Width = 64.252010000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Address:')
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 268.346630000000000000
+          Top = 6.102350000000001000
+          Width = 464.882190000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            '355 Jo'#227'o Ribeiro do Nascimento Street')
+        end
+        object Memo3: TfrxMemoView
+          Left = 204.094620000000000000
+          Top = 25.000000000000000000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'ZIP Code:')
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Left = 276.110390000000000000
+          Top = 25.000000000000000000
+          Width = 75.590600000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            '14781-530')
+        end
+        object Memo7: TfrxMemoView
+          Left = 351.700990000000000000
+          Top = 25.000000000000000000
+          Width = 41.574830000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'City:')
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Left = 393.275820000000000000
+          Top = 25.000000000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            'Barretos')
+        end
+        object Memo9: TfrxMemoView
+          Left = 506.661720000000000000
+          Top = 25.000000000000000000
+          Width = 45.354360000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'State:')
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Left = 552.016080000000000000
+          Top = 25.000000000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            'SP')
+        end
+        object Memo11: TfrxMemoView
+          Left = 204.094620000000000000
+          Top = 43.897650000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Phone Number:')
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          Left = 204.094620000000000000
+          Top = 62.795300000000000000
+          Width = 45.354360000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Email:')
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Left = 317.480520000000000000
+          Top = 43.897650000000000000
+          Width = 162.519790000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            ' +55 (17) 3321-8000')
+        end
+        object Memo6: TfrxMemoView
+          Left = 249.448980000000000000
+          Top = 62.795300000000000000
+          Width = 181.417440000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            'support@minervafoods.com')
+        end
+        object Picture2: TfrxPictureView
+          Left = 7.559060000000000000
+          Top = 3.779530000000001000
+          Width = 196.535560000000000000
+          Height = 79.370130000000000000
+          Picture.Data = {
+            1054544D53464E435356474269746D6170DA0F00003C3F786D6C207665727369
+            6F6E3D22312E302220656E636F64696E673D225554462D3822207374616E6461
+            6C6F6E653D226E6F223F3E0A3C7376670A20202066696C6C3D226E6F6E65220A
+            2020206865696768743D22323130220A20202077696474683D22353030220A20
+            202076657273696F6E3D22312E31220A20202069643D22737667333233220A20
+            2020786D6C6E733D22687474703A2F2F7777772E77332E6F72672F323030302F
+            737667220A202020786D6C6E733A7376673D22687474703A2F2F7777772E7733
+            2E6F72672F323030302F737667223E0A20203C646566730A202020202069643D
+            226465667333323722202F3E0A20203C670A2020202020636C69702D70617468
+            3D226E6F6E65220A202020202069643D2267333231220A20202020207374796C
+            653D22646973706C61793A696E6C696E65220A20202020207472616E73666F72
+            6D3D226D617472697828362E313733313434342C302C302C362E313733313434
+            342C302E30333038363338312C2D31322E33323337373829223E0A202020203C
+            706174680A20202020202020643D226D2032312E3131332C362E35352068202D
+            322E36393620762031302E3731206820322E363936207A206D2034362E353235
+            2C30202D342E3333312C31302E37312068202D322E3834204C2035362E303532
+            2C362E3535206820322E393633206C20322E3838332C372E35383220322E3836
+            2C2D372E353831207A206D20392E3133342C352E333435206320302C2D322E30
+            3038202D312E3432382C2D332E333135202D332E31352C2D332E333135202D31
+            2E3830352C30202D332E31352C312E333339202D332E31352C332E3331352030
+            2C312E39373520312E3334352C332E32333420332E31352C332E32333420312E
+            37332C3020332E31352C2D312E32353620332E31352C2D332E323334207A206D
+            20312E3338382C352E333536202D312E3236332C2D332E383934202D302E3138
+            352C322E3639382063202D302E3738382C302E393036202D312E3932382C312E
+            353032202D332E3538372C312E353032202D332E3231322C30202D352E343532
+            2C2D322E343238202D352E3435322C2D352E36363220302C2D332E3233352032
+            2E32322C2D352E37333520352E3433312C2D352E373335206120342E3637362C
+            342E36373620302030203120332E3536342C312E353035205620362E35353320
+            6820322E363837207620352E393135206C20312E3633362C342E38207A204D20
+            31362E31372C31302E333134207620362E3934382068202D322E37332076202D
+            362E353135206320302C2D312E353032202D302E3637332C2D322E323533202D
+            312E38392C2D322E323533202D312E3430392C30202D322E3130312C31202D32
+            2E3130312C322E373735207620352E393837204820362E3732322076202D362E
+            343833206320302C2D312E313437202D302E3438352C2D322E323734202D312E
+            38352C2D322E323734202D312E3336352C30202D322E3037382C312E31303420
+            2D322E3134322C322E383136207620352E3934372048202D302E303035205620
+            362E343132206820322E3733205620392E333937204C20332E3337372C362E38
+            3934204120332E3236372C332E32363720302030203120352E3732392C362E30
+            3136206320312E39332C3020332E3331362C312E323320332E3635332C332E32
+            3535204C20392E3935392C362E383934206120332E3137382C332E3137382030
+            2030203120322E3333322C2D302E383738206320322E3431362C3020332E3836
+            342C312E35323320332E3836342C342E333031206D20312E3835382C2D362E35
+            3839206320302C2D302E333420302E3130322C2D302E36373320302E3239322C
+            2D302E393536204120312E37332C312E37332030203020312032302E3038322C
+            322E30343120312E3731372C312E3731372030203020312032312E3334342C34
+            2E33383720312E3732332C312E3732332030203020312032302E3730372C352E
+            31353920312E37342C312E37342030203020312031382E35322C342E39343520
+            312E3731352C312E3731352030203020312031382E3031332C332E373238205A
+            206D2031352E3736332C372E323532207620362E32383220482033312E303820
+            562031312E3337206320302C2D312E393135202D302E36342C2D322E37333820
+            2D322E3133322C2D322E373338202D312E3537362C30202D322E3438382C312E
+            303932202D322E3438382C322E393635207620352E36363520482032332E3736
+            35205620362E353533206820322E363935207620332E313038206C20302E362C
+            2D322E343238206320302E362C2D302E363420312E3434332C2D312E30373320
+            322E3735362C2D312E30373320322E3537322C3020332E39362C312E36383920
+            332E39362C342E3832207A206D20342E3730392C2D302E313433206820342E38
+            3531206320302C2D312E343633202D302E3836352C2D322E343532202D322E33
+            34332C2D322E343532202D312E3236342C30202D322E3233362C302E37343320
+            2D322E3530382C322E343532207A206D20372E36352C312E3839322068202D37
+            2E3637206320302E3234382C312E38373520312E3332382C322E36313820322E
+            38322C322E36313820312E3430382C3020322E3330382C2D302E35353620322E
+            38362C2D312E373932206C20312E3930372C312E37322063202D312E3035362C
+            312E353436202D322E38322C322E323934202D342E3835312C322E323934202D
+            332E3436332C30202D352E3539362C2D322E333435202D352E3539362C2D352E
+            363220302C2D332E33353720322E32382C2D352E37383920352E3438332C2D35
+            2E37383920332E3133312C3020352E31322C322E32363520352E31322C352E35
+            34206120362E33342C362E3334203020302031202D302E30362C312E3033204D
+            2035342E39312C362E343437205620392E3036204120342E35382C342E353820
+            30203020302035332E3531382C382E3835342063202D312E3533322C30202D32
+            2E3534382C312E313333202D322E3534382C332E323334207620352E31363120
+            482034382E323735205620362E353533206820322E363935207620332E353220
+            6C20302E362C2D322E38206120332E3037392C332E3037392030203020312032
+            2E32362C2D302E393920322E36372C322E363720302030203120312E30382C30
+            2E313636220A2020202020202066696C6C3D2223326233643461220A20202020
+            20202069643D227061746833313722202F3E0A202020203C706174680A202020
+            20202020643D224D20372E3034382C32362E3635204820332E38313520762039
+            2E303434204820312E3930382076202D392E3034332068202D312E3931332076
+            202D312E363639206820312E3930372076202D312E323736206320302C2D322E
+            30333920312E3332382C2D332E3520332E342C2D332E35206120362E3537372C
+            362E35373720302030203120312E3535352C302E313833207620312E36343820
+            4120352E3630362C352E36303620302030203020352E3635342C32312E393134
+            2063202D312E3135352C30202D312E3834342C302E353336202D312E3834342C
+            312E383532207620312E323136206820332E323332207A206D20332E3335382C
+            332E363634206320302C322E33393120312E3631362C332E39333420332E3739
+            322C332E39333420322E3137362C3020332E3831352C2D312E35343320332E38
+            31352C2D332E39333420302C2D322E333931202D312E3539362C2D332E393331
+            202D332E3831352C2D332E393331202D322E3231392C30202D332E3739322C31
+            2E353632202D332E3739322C332E3933207A206D20392E3537352C3020632030
+            2C332E333537202D322E3532382C352E363836202D352E3737312C352E363836
+            202D332E3234332C30202D352E37342C2D322E333239202D352E37342C2D352E
+            36383620302C2D332E33353820322E3530382C2D352E36383320352E37342C2D
+            352E36383320332E3233322C3020352E3737312C322E33323820352E3737312C
+            352E363833207A206D20332E3632382C30206320302C322E33393120312E3631
+            362C332E39333420332E3739322C332E39333420322E3137362C3020332E3831
+            352C2D312E35343320332E3831352C2D332E39333420302C2D322E333931202D
+            312E3539362C2D332E393331202D332E3831352C2D332E393331202D322E3232
+            2C30202D332E3739322C312E353632202D332E3739322C332E3933207A206D20
+            392E3537352C30206320302C332E333537202D322E3532382C352E363836202D
+            352E3737322C352E363836202D332E3234342C30202D352E37342C2D322E3332
+            39202D352E37342C2D352E36383620302C2D332E33353820322E3530382C2D35
+            2E36383320352E37342C2D352E36383320332E3233322C3020352E3737322C32
+            2E33323820352E3737322C352E363833207A206D2031312E3235322C302E3032
+            34206320302C2D322E323235202D312E3531322C2D332E393737202D332E3831
+            322C2D332E393737202D322E3338342C30202D332E3831352C312E373532202D
+            332E3831352C332E39373720302C322E32323520312E3434332C332E39333420
+            332E3831352C332E39333420322E3330392C3020332E3831322C2D312E373220
+            332E3831322C2D332E393334207A206D20312E3434332C352E333536202D312E
+            3334372C2D342E303537202D302E3230382C322E3539352063202D302E383238
+            2C312E303039202D322E3133362C312E373732202D342C312E373732202D332E
+            3239362C30202D352E3435312C2D322E343932202D352E3435312C2D352E3636
+            3320302C2D332E31373120322E3135352C2D352E37303620352E34352C2D352E
+            373036206120342E39312C342E393120302030203120342E3036342C312E3931
+            362076202D352E393936206820312E39303520762031302E353033206C20312E
+            35392C342E363336207A206D2031322E3338372C2D372E393332202D312E3832
+            342C302E36382063202D302E3038342C2D312E3338202D312E30362C2D322E32
+            3436202D322E3639362C2D322E323436202D312E3437312C30202D322E333433
+            2C302E37202D322E3334332C312E36303620302C322E35333520372E3030372C
+            302E37323320372E3030372C342E39323320302C322E303939202D312E373834
+            2C332E323735202D342E3437362C332E323735202D322E37382C30202D342E35
+            322C2D312E3336202D342E3835312C2D332E323935206C20312E3836342C2D30
+            2E373833206320302E3038342C312E36323620312E3234342C322E3531322032
+            2E3938372C322E35313220312E3336382C3020322E3432342C2D302E34373320
+            322E3432342C2D312E35383620302C2D322E353131202D362E3932362C2D302E
+            363339202D362E3932362C2D342E39323320302C2D312E39313520312E393638
+            2C2D332E32393420342E3331312C2D332E32393420322E3530382C3020342E32
+            34382C312E32353620342E35322C332E3133220A2020202020202066696C6C3D
+            2223653834373532220A2020202020202069643D227061746833313922202F3E
+            0A20203C2F673E0A3C2F7376673E0A}
+          HightQuality = False
+          Transparent = False
+          TransparentColor = clWhite
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        Height = 30.236240000000000000
+        Top = 136.063080000000000000
+        Width = 718.110700000000000000
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 309.921460000000000000
+        Width = 718.110700000000000000
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 226.771800000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBClient
+        DataSetName = 'frxDBClient'
+        RowCount = 0
+      end
+    end
+  end
+  object frxDBClient: TfrxDBDataset
+    UserName = 'frxDBClient'
+    CloseDataSource = False
+    DataSet = qryClient
+    BCDToCurrency = False
+    Left = 697
+    Top = 401
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Server=DESKTOP-LQTA0BU\SQLEXPRESS'
+      'Database=CRUD_MinervaFoods'
+      'OSAuthent=Yes'
+      'ApplicationName=Architect'
+      'Workstation=DESKTOP-LQTA0BU'
+      'MARS=yes'
+      'DriverID=MSSQL')
+    Connected = True
+    Left = 529
+    Top = 297
+  end
+  object qryOrder: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT '#10'  '
+      '  o.order_id AS OrderID,'#10'  '
+      '  o.order_date AS OrderDate,'#10'  '
+      '  i.item_id AS ProductID,'#10'  '
+      '  p.item_name AS ProductName,'#10'  '
+      '  i.quantity AS Quantity,'#10'  '
+      '  i.unit_price AS UnitPrice,'#10'  '
+      '  (i.quantity * i.unit_price) AS ItemTotal,'#10'  '
+      '  o.total_value AS OrderTotal'
+      #10'FROM '#10'  tab_orders o'#10
+      '  JOIN '#10'  tab_orders_item i ON o.order_id = i.order_id'
+      #10'  JOIN '#10'  tab_item p ON i.item_id = p.item_id'
+      #10'WHERE '#10'  '
+      '  o.client_id = :ClientID'
+      #10'  AND '#10'  o.order_date BETWEEN :StartDate AND :EndDate'
+      #10'ORDER BY '#10'  '
+      '  o.order_date, '
+      '  o.order_id;')
+    Left = 561
+    Top = 217
+    ParamData = <
+      item
+        Name = 'CLIENTID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STARTDATE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENDDATE'
+        ParamType = ptInput
+      end>
+  end
+  object qryClient: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT '
+      #9'client_name AS ClientName,'
+      #9'client_address AS ClientAddress,'
+      #9'phone AS ClientPhone,'
+      #9'email as ClientEmail'
+      'FROM tab_clients '
+      #10'WHERE'#10#9'client_id = :ClientID')
+    Left = 577
+    Top = 273
+    ParamData = <
+      item
+        Name = 'CLIENTID'
+        ParamType = ptInput
+      end>
+  end
+  object frxDBOrder: TfrxDBDataset
+    UserName = 'frxDBDataSet1'
+    CloseDataSource = False
+    DataSet = qryOrder
+    BCDToCurrency = False
+    Left = 625
+    Top = 377
+  end
+end

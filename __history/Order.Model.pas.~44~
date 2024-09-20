@@ -1,0 +1,175 @@
+unit Order.Model;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, FireDAC.Comp.Client, Vcl.Dialogs, FireDAC.Stan.Error;
+
+type
+  TOrder = class
+    OrderID: Integer;
+    ClientID: Integer;
+    ClientName: string;
+    OrderDate: TDate;
+    OrderItems: TFDQuery;
+  end;
+
+  TOrderModel = class
+  private
+    FOrderItemsQuery: TFDQuery;
+  public
+    constructor Create(AConnection: TFDConnection);
+    destructor Destroy; override;
+
+    function LoadOrder(OrderId: Integer; AConnection: TFDConnection): TOrder;
+    procedure SaveOrder(Order: TOrder; AConnection: TFDConnection);
+    function DeleteOrder(AID: Integer; AConnection: TFDConnection): Boolean ;
+
+    function GetOrderItemsQuery: TFDQuery;
+    procedure AddOrderItem(OrderId, ProductId, Quantity: Integer; UnitPrice: Double);
+    procedure RemoveOrderItem(ItemId: Integer; AConnection: TFDConnection);
+  end;
+
+implementation
+
+constructor TOrderModel.Create(AConnection: TFDConnection);
+begin
+  FOrderItemsQuery := TFDQuery.Create(nil);
+  FOrderItemsQuery.Connection := AConnection;
+end;
+
+function TOrderModel.DeleteOrder(AID: Integer; AConnection: TFDConnection): Boolean;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := AConnection;
+    FDQuery.SQL.Text := 'DELETE FROM tab_order_items WHERE order_id = :id; DELETE FROM tab_order WHERE order_id = :id; ';
+    FDQuery.ParamByName('id').AsInteger := AID;
+
+    try
+      FDQuery.ExecSQL;
+      ShowMessage('Order deleted successfully.');
+    except
+      on E: EFDDBEngineException do
+      begin
+        ShowMessage('An error occurred: ' + E.Message);
+      end;
+      on E: Exception do
+      begin
+        ShowMessage('An unexpected error occurred: ' + E.Message);
+      end;
+    end;
+
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+destructor TOrderModel.Destroy;
+begin
+  FOrderItemsQuery.Free;
+  inherited;
+end;
+
+function TOrderModel.LoadOrder(OrderId: Integer; AConnection: TFDConnection): TOrder;
+var
+  Order: TOrder;
+begin
+  Order := TOrder.Create;
+
+  with TFDQuery.Create(nil) do
+  try
+    Connection := AConnection;
+    SQL.Text := 'SELECT * FROM tab_orders WHERE order_id = :OrderID';
+    Params.ParamByName('OrderID').AsInteger := OrderId;
+    Open;
+    if not IsEmpty then
+    begin
+      Order.OrderID := FieldByName('OrderID').AsInteger;
+      Order.ClientID := FieldByName('ClientID').AsInteger;
+      Order.ClientName := FieldByName('ClientName').AsString;
+      Order.OrderDate := FieldByName('OrderDate').AsDateTime;
+
+      FOrderItemsQuery.SQL.Text := 'SELECT * FROM tab_orders_item WHERE order_id = :OrderID';
+      FOrderItemsQuery.Params.ParamByName('OrderID').AsInteger := OrderId;
+      FOrderItemsQuery.Open;
+      Order.OrderItems := FOrderItemsQuery;
+    end;
+  finally
+    Free;
+  end;
+
+  Result := Order;
+end;
+
+procedure TOrderModel.SaveOrder(Order: TOrder; AConnection: TFDConnection);
+begin
+  with TFDQuery.Create(nil) do
+  try
+    Connection := AConnection;
+    if Order.OrderID = 0 then
+    begin
+      SQL.Text := 'INSERT INTO tab_orders (client_id, order_date) VALUES (:ClientID, :OrderDate)';
+      Params.ParamByName('ClientID').AsInteger := Order.ClientID;
+      Params.ParamByName('OrderDate').AsDateTime := Order.OrderDate;
+      ExecSQL;
+
+      Order.OrderID := AConnection.ExecSQLScalar('SELECT LAST_INSERT_ID()');
+    end
+    else
+    begin
+      SQL.Text := 'UPDATE tab_orders SET client_id = :ClientID, order_date = :OrderDate WHERE order_id = :OrderID';
+      Params.ParamByName('OrderID').AsInteger := Order.OrderID;
+      Params.ParamByName('ClientID').AsInteger := Order.ClientID;
+      Params.ParamByName('OrderDate').AsDateTime := Order.OrderDate;
+      ExecSQL;
+    end;
+
+    if Assigned(Order.OrderItems) and (Order.OrderItems.RecordCount > 0) then
+    begin
+      Order.OrderItems.First;
+      while not Order.OrderItems.Eof do
+      begin
+        Order.OrderItems.Next;
+      end;
+    end;
+  finally
+    Free;
+  end;
+end;
+
+procedure TOrderModel.AddOrderItem(OrderId, ProductId, Quantity: Integer; UnitPrice: Double);
+begin
+  with FOrderItemsQuery do
+  begin
+    Append;
+    FieldByName('OrderID').AsInteger := OrderId;
+    FieldByName('ProductID').AsInteger := ProductId;
+    FieldByName('Quantity').AsInteger := Quantity;
+    FieldByName('UnitPrice').AsFloat := UnitPrice;
+    Post;
+  end;
+end;
+
+procedure TOrderModel.RemoveOrderItem(ItemId: Integer; AConnection: TFDConnection);
+begin
+  with TFDQuery.Create(nil) do
+  try
+    Connection := AConnection;
+    SQL.Text := 'DELETE FROM OrderItems WHERE ItemID = :ItemID';
+    Params.ParamByName('ItemID').AsInteger := ItemId;
+    ExecSQL;
+  finally
+    Free;
+  end;
+end;
+
+function TOrderModel.GetOrderItemsQuery: TFDQuery;
+begin
+  Result := FOrderItemsQuery;
+end;
+
+end.
+

@@ -1,0 +1,128 @@
+unit Product.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB,
+  Product.ViewModel,
+  dxSkinsCore,
+  dxSkinBasic, dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel,
+  dxSkinCoffee, dxSkinDarkroom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
+  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark, dxSkinOffice2019Black, dxSkinOffice2019Colorful,
+  dxSkinOffice2019DarkGray, dxSkinOffice2019White, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
+  dxSkinSpringtime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
+  dxSkinTheBezier, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinXmas2008Blue, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
+  Vcl.Menus, cxControls, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxButtonEdit, Vcl.StdCtrls, cxButtons, Vcl.Grids, Vcl.DBGrids,
+  Datasnap.DBClient, frxClass, frxDBSet, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MSSQL,
+  FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, dxBarBuiltInMenu, cxPC, dxSkinsCore;
+
+type
+  TfrmProductManagement = class(TForm)
+    pnlGeneral: TPanel;
+    pnlGrid: TPanel;
+    pnlTop: TPanel;
+    pnlActions: TPanel;
+    pnlProductOrder: TPanel;
+    DBGrid1: TDBGrid;
+    btnNewOrder: TcxButton;
+    btnSaveOrder: TcxButton;
+    btnDeleteOrder: TcxButton;
+    btnOrderReport: TcxButton;
+    lblOrderId: TLabel;
+    lblClientId: TLabel;
+    frxReport1: TfrxReport;
+    frxDBClient: TfrxDBDataset;
+    FDConnection1: TFDConnection;
+    qryOrder: TFDQuery;
+    qryClient: TFDQuery;
+    frxDBOrder: TfrxDBDataset;
+    cxPageControl1: TcxPageControl;
+    tabOrder: TcxTabSheet;
+    tabProduct: TcxTabSheet;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    gridProducts: TDBGrid;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    btnNewProduct: TcxButton;
+    btnSaveProduct: TcxButton;
+    btnDeleteProduct: TcxButton;
+    Panel5: TPanel;
+    edtProductId: TcxTextEdit;
+    edtProductDescription: TcxTextEdit;
+    edtProductPrice: TcxTextEdit;
+    lblProductPrice: TLabel;
+    edtProductName: TcxTextEdit;
+    lblProductName: TLabel;
+    lblProductId: TLabel;
+    btnLoadProduct: TcxButton;
+    lblDescriptionProduct: TLabel;
+    btnLoadOrder: TcxButton;
+    edtOrderId: TcxTextEdit;
+    edtClientId: TcxTextEdit;
+    Label2: TLabel;
+    cxTextEdit1: TcxTextEdit;
+    lblClientName: TLabel;
+    edtOrderDate: TcxTextEdit;
+    lblOrderDate: TLabel;
+    procedure btnLoadProductClick(Sender: TObject);
+    procedure btnNewProductClick(Sender: TObject);
+    procedure btnSaveProductClick(Sender: TObject);
+    procedure btnDeleteProductClick(Sender: TObject);
+  private
+    FProductViewModel: TProductViewModel;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmProductManagement: TfrmProductManagement;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmProductManagement.btnDeleteProductClick(Sender: TObject);
+begin
+  FProductViewModel.DeleteProduct;
+end;
+
+procedure TfrmProductManagement.btnLoadProductClick(Sender: TObject);
+begin
+  FProductViewModel.LoadProduct(StrToInt(edtProductId.Text));
+  edtProductName.Text := FProductViewModel.Product.Name;
+  edtProductDescription.Text := FProductViewModel.Product.Description;
+  edtProductPrice.Text := FloatToStr(FProductViewModel.Product.Price);
+end;
+
+procedure TfrmProductManagement.btnNewProductClick(Sender: TObject);
+begin
+  edtProductId.Text := EmptyStr;
+  edtProductName.Text := EmptyStr;
+  edtProductDescription.Text := EmptyStr;
+  edtProductPrice.Text := EmptyStr;
+end;
+
+procedure TfrmProductManagement.btnSaveProductClick(Sender: TObject);
+begin
+  FProductViewModel.SaveProduct(edtProductName.Text, edtProductDescription.Text, StrToFloat(edtProductPrice.Text));
+end;
+
+end.
