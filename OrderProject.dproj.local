@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/09/20 02:52:02.333,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 02:52:48.796,C:\MinervaFoods\CadastroItens\CadastroItens.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 02:52:48.796,C:\MinervaFoods\CadastroItens\CadastroItens.dfm=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/09/20 02:53:17.038,C:\MinervaFoods\CadastroItens\OrderProject.dproj=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/09/20 02:53:25.588,C:\MinervaFoods\CadastroItens\CadastroItens.pas=</Transaction>
+    <Transaction>2024/09/20 02:53:42.413,=C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.Model.pas</Transaction>
+    <Transaction>2024/09/20 02:53:43.257,=C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.View.pas</Transaction>
+    <Transaction>2024/09/20 02:53:43.282,=C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.ViewModel.pas</Transaction>
+    <Transaction>2024/09/20 02:53:43.304,=C:\MinervaFoods\CadastroItens\Produto.Model.pas</Transaction>
+    <Transaction>2024/09/20 02:53:44.788,=C:\MinervaFoods\CadastroItens\Produto.View.pas</Transaction>
+    <Transaction>2024/09/20 02:53:44.818,=C:\MinervaFoods\CadastroItens\Produto.ViewModel.pas</Transaction>
+    <Transaction>2024/09/20 02:53:44.845,=C:\MinervaFoods\CadastroItens\ProdutoDAO.pas</Transaction>
+    <Transaction>2024/09/20 02:54:21.574,C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.Model.pas=</Transaction>
+    <Transaction>2024/09/20 02:54:21.595,C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.View.pas=</Transaction>
+    <Transaction>2024/09/20 02:54:21.608,C:\MinervaFoods\CadastroItens\Produto.FormAuxiliar.ViewModel.pas=</Transaction>
+    <Transaction>2024/09/20 02:55:09.953,C:\MinervaFoods\CadastroItens\Item.View.pas=C:\MinervaFoods\CadastroItens\Produto.View.pas</Transaction>
+    <Transaction>2024/09/20 02:55:09.953,C:\MinervaFoods\CadastroItens\Item.View.dfm=C:\MinervaFoods\CadastroItens\Produto.View.dfm</Transaction>
+    <Transaction>2024/09/20 03:06:02.947,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 03:06:10.450,C:\MinervaFoods\CadastroItens\Product.View.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 03:06:10.450,C:\MinervaFoods\CadastroItens\Product.View.dfm=C:\MinervaFoods\CadastroItens\Unit1.dfm</Transaction>
+    <Transaction>2024/09/20 03:06:16.646,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 03:06:23.564,C:\MinervaFoods\CadastroItens\Product.ViewModel.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 03:06:30.414,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 03:06:38.053,C:\MinervaFoods\CadastroItens\Product.Model.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 05:19:32.219,C:\MinervaFoods\CadastroItens\Main.View.dfm=C:\MinervaFoods\CadastroItens\Product.View.dfm</Transaction>
+    <Transaction>2024/09/20 05:19:32.219,C:\MinervaFoods\CadastroItens\Main.View.pas=C:\MinervaFoods\CadastroItens\Product.View.pas</Transaction>
+    <Transaction>2024/09/20 05:20:49.916,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 05:20:57.604,C:\MinervaFoods\CadastroItens\Order.Model.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 05:21:03.613,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 05:21:08.634,C:\MinervaFoods\CadastroItens\Order.ViewModel.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 18:45:26.050,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 18:46:05.886,C:\MinervaFoods\CadastroItens\Auxiliary.Form.dfm=C:\MinervaFoods\CadastroItens\Unit1.dfm</Transaction>
+    <Transaction>2024/09/20 18:46:05.886,C:\MinervaFoods\CadastroItens\Auxiliary.Form.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 19:47:34.260,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 19:47:52.008,C:\MinervaFoods\CadastroItens\Order.Tests.pas=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+    <Transaction>2024/09/20 20:35:58.775,=C:\MinervaFoods\CadastroItens\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

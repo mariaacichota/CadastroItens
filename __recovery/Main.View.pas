@@ -1,0 +1,291 @@
+unit Main.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB,
+  Product.ViewModel, Order.ViewModel, Auxiliary.Form,
+  dxSkinsCore,
+  dxSkinBasic, dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel,
+  dxSkinCoffee, dxSkinDarkroom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
+  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark, dxSkinOffice2019Black, dxSkinOffice2019Colorful,
+  dxSkinOffice2019DarkGray, dxSkinOffice2019White, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
+  dxSkinSpringtime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
+  dxSkinTheBezier, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinXmas2008Blue, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
+  Vcl.Menus, cxControls, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
+  cxButtonEdit, Vcl.StdCtrls, cxButtons, Vcl.Grids, Vcl.DBGrids,
+  Datasnap.DBClient, frxClass, frxDBSet, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MSSQL,
+  FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, dxBarBuiltInMenu, cxPC;
+
+type
+  TfrmMain = class(TForm)
+    pnlGeneral: TPanel;
+    pnlGrid: TPanel;
+    pnlTop: TPanel;
+    pnlActions: TPanel;
+    pnlProductOrder: TPanel;
+    gridOrderItems: TDBGrid;
+    btnNewOrder: TcxButton;
+    btnSaveOrder: TcxButton;
+    btnDeleteOrder: TcxButton;
+    btnOrderReport: TcxButton;
+    lblOrderId: TLabel;
+    lblClientId: TLabel;
+    frxReportOrders: TfrxReport;
+    frxDBClient: TfrxDBDataset;
+    FDConnection1: TFDConnection;
+    qryOrder: TFDQuery;
+    qryClient: TFDQuery;
+    frxDBOrder: TfrxDBDataset;
+    cxPageControl1: TcxPageControl;
+    tabOrder: TcxTabSheet;
+    tabProduct: TcxTabSheet;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    gridProducts: TDBGrid;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    btnNewProduct: TcxButton;
+    btnSaveProduct: TcxButton;
+    btnDeleteProduct: TcxButton;
+    Panel5: TPanel;
+    edtProductId: TcxTextEdit;
+    edtProductDescription: TcxTextEdit;
+    edtProductPrice: TcxTextEdit;
+    lblProductPrice: TLabel;
+    edtProductName: TcxTextEdit;
+    lblProductName: TLabel;
+    lblProductId: TLabel;
+    btnLoadProduct: TcxButton;
+    lblDescriptionProduct: TLabel;
+    btnLoadOrder: TcxButton;
+    edtOrderId: TcxTextEdit;
+    edtClientId: TcxTextEdit;
+    Label2: TLabel;
+    lblClientName: TLabel;
+    edtOrderDate: TcxTextEdit;
+    lblOrderDate: TLabel;
+    qryProducts: TFDQuery;
+    dsProducts: TDataSource;
+    qryOrderItems: TFDQuery;
+    dsOrderItems: TDataSource;
+    pnlControlItem: TPanel;
+    btnRemoveItem: TcxButton;
+    btnAddItem: TcxButton;
+    procedure btnLoadProductClick(Sender: TObject);
+    procedure btnNewProductClick(Sender: TObject);
+    procedure btnSaveProductClick(Sender: TObject);
+    procedure btnDeleteProductClick(Sender: TObject);
+    procedure btnNewOrderClick(Sender: TObject);
+    procedure btnLoadOrderClick(Sender: TObject);
+    procedure btnOrderReportClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure qryProductsAfterScroll(DataSet: TDataSet);
+    procedure btnSaveOrderClick(Sender: TObject);
+    procedure btnDeleteOrderClick(Sender: TObject);
+    procedure btnAddItemClick(Sender: TObject);
+    procedure btnRemoveItemClick(Sender: TObject);
+  private
+    FProductViewModel: TProductViewModel;
+    FOrderViewModel: TOrderViewModel;
+    procedure GenerateReport;
+    procedure ClearOrderForm;
+    procedure ClearProductForm;
+  public
+    function GetFDConnection: TFDConnection;
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMain.btnAddItemClick(Sender: TObject);
+begin
+  if (qryOrderItems.FieldByName('OrderID').AsInteger > 0) and (qryOrderItems.FieldByName('Quantity').AsInteger > 0) then
+    FOrderViewModel.AddOrderItem(qryOrderItems.FieldByName('OrderID').AsInteger,
+      qryOrderItems.FieldByName('Quantity').AsInteger, qryOrderItems.FieldByName('UnitPrice').AsFloat);
+end;
+
+procedure TfrmMain.btnDeleteOrderClick(Sender: TObject);
+begin
+  FOrderViewModel.DeleteOrder(StrToInt(edtOrderId.Text));
+  ClearOrderForm;
+  qryProducts.Close;
+  gridProducts.Refresh;
+end;
+
+procedure TfrmMain.btnDeleteProductClick(Sender: TObject);
+begin
+  FProductViewModel.DeleteProduct(StrToInt(edtProductId.Text));
+  qryProducts.Close;
+  qryProducts.Open;
+  gridProducts.Refresh;
+end;
+
+procedure TfrmMain.btnLoadOrderClick(Sender: TObject);
+begin
+  FOrderViewModel.LoadOrder(StrToInt(edtOrderId.Text));
+  qryOrderItems.Close;
+  qryOrderItems.ParamByName('cod_order').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.Open;
+  gridOrderItems.Refresh;
+  edtOrderId.Text := IntToStr(FOrderViewModel.Order.OrderId);
+  edtClientId.Text := IntToStr(FOrderViewModel.Order.ClientId);
+  lblClientName.Caption := UpperCase(FOrderViewModel.Order.ClientName);
+  lblClientName.Visible := True;
+  edtOrderDate.Text := DateToStr(FOrderViewModel.Order.OrderDate);
+end;
+
+procedure TfrmMain.btnLoadProductClick(Sender: TObject);
+begin
+  FProductViewModel.LoadProduct(StrToInt(edtProductId.Text));
+  edtProductName.Text := FProductViewModel.Product.Name;
+  edtProductDescription.Text := FProductViewModel.Product.Description;
+  edtProductPrice.Text := FloatToStr(FProductViewModel.Product.Price);
+end;
+
+procedure TfrmMain.btnNewOrderClick(Sender: TObject);
+begin
+  FOrderViewModel.NewOrder;
+  btnLoadOrder.Enabled := False;
+  edtOrderId.Enabled := False;
+  ClearOrderForm;
+end;
+
+procedure TfrmMain.btnNewProductClick(Sender: TObject);
+begin
+  edtProductId.Enabled := False;
+  btnLoadProduct.Enabled := False;
+  ClearProductForm;
+end;
+
+procedure TfrmMain.btnOrderReportClick(Sender: TObject);
+begin
+  GenerateReport;
+end;
+
+procedure TfrmMain.btnRemoveItemClick(Sender: TObject);
+begin
+   FOrderViewModel.RemoveOrderItem(qryOrderItems.FieldByName('ProductID').AsInteger);
+end;
+
+procedure TfrmMain.btnSaveOrderClick(Sender: TObject);
+begin
+  FOrderViewModel.SaveOrder(StrToInt(edtClientId.Text),lblClientName.Caption,StrToDate(edtOrderDate.Text));
+  btnLoadOrder.Enabled := true;
+  edtOrderId.Enabled := true;
+  ClearOrderForm;
+end;
+
+procedure TfrmMain.btnSaveProductClick(Sender: TObject);
+var
+  AID: Integer;
+begin
+  if edtProductId.Text = EmptyStr then
+    AID := 0
+  else
+    AID := StrToInt(edtProductId.Text);
+
+  FProductViewModel.SaveProduct(edtProductName.Text, edtProductDescription.Text,
+    StrToFloat(edtProductPrice.Text), AID);
+  qryProducts.Close;
+  qryProducts.Open;
+  gridProducts.Refresh;
+  edtProductId.Enabled := true;
+  btnLoadProduct.Enabled := true;
+end;
+
+procedure TfrmMain.ClearOrderForm;
+begin
+  lblClientName.Caption := EmptyStr;
+  edtOrderId.Text := EmptyStr;
+  edtClientId.Text := EmptyStr;
+  edtOrderDate.Text := DateToStr(Now);
+  qryOrderItems.Close;
+  gridOrderItems.Refresh;
+end;
+
+procedure TfrmMain.ClearProductForm;
+begin
+  edtProductId.Text := EmptyStr;
+  edtProductName.Text := EmptyStr;
+  edtProductDescription.Text := EmptyStr;
+  edtProductPrice.Text := EmptyStr;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  FProductViewModel := TProductViewModel.Create(FDConnection1);
+  FOrderViewModel := TOrderViewModel.Create(FDConnection1);
+  qryProducts.Close;
+  qryProducts.Open;
+  gridProducts.Refresh;
+  gridOrderItems.DataSource := FOrderViewModel.GetOrderItemsDataSource;
+end;
+
+procedure TfrmMain.GenerateReport;
+var
+  StartDate, EndDate: TDate;
+begin
+  qryOrder.Close;
+  qryOrder.ParamByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
+
+  if not Assigned(frmAuxiliary) then
+    Application.CreateForm(TfrmAuxiliary, frmAuxiliary);
+
+  if frmAuxiliary.ShowModal = mrOk then
+  begin
+    try
+      StartDate := frmAuxiliary.edtStartDate.Date;
+      EndDate := frmAuxiliary.edtEndDate.Date;
+
+      qryOrder.ParamByName('StartDate').AsDate := StartDate;
+      qryOrder.ParamByName('EndDate').AsDate := EndDate;
+      qryOrder.Open;
+
+      qryClient.Close;
+      qryClient.ParamByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
+      qryClient.Open;
+    except
+      on E: Exception do
+        ShowMessage('Error: ' + E.Message);
+    end;
+  end;
+
+  frxReportOrders.ShowReport;
+
+end;
+
+function TfrmMain.GetFDConnection: TFDConnection;
+begin
+   Result := FDConnection1;
+end;
+
+procedure TfrmMain.qryProductsAfterScroll(DataSet: TDataSet);
+begin
+  edtProductId.Text := qryProducts.FieldByName('ProductID').AsString;
+  edtProductName.Text := qryProducts.FieldByName('ProductName').AsString;
+  edtProductDescription.Text := qryProducts.FieldByName('ProductDescription').AsString;
+  edtProductPrice.Text := qryProducts.FieldByName('ProductPrice').AsString;
+end;
+
+end.

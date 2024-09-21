@@ -4,7 +4,7 @@ interface
 
 uses
   DUnitX.TestFramework, FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Stan.Async, FireDAC.DApt, Main.View,
-  System.SysUtils;
+  System.SysUtils, Vcl.Dialogs;
 
 type
   [TestFixture]
@@ -44,7 +44,21 @@ end;
 
 procedure TOrderTests.SetupDatabaseConnection;
 begin
-  FConnection := frmMain.GetFDConnection;
+  FConnection := TFDConnection.Create(nil);
+  try
+    FConnection.DriverName := 'MSSQL';
+
+    FConnection.Params.Add('Pooled=False');
+    FConnection.Params.Add('Database=CRUD_MinervaFoods');
+    FConnection.Params.Add('Server=DESKTOP-LQTA0BU\SQLEXPRESS');
+    FConnection.Params.Add('OSAuthent=Yes');
+    FConnection.Params.Add('MARS=Yes');
+
+    FConnection.Connected := True;
+  except
+    on E: Exception do
+      ShowMessage('Error initializing FDConnection: ' + E.Message);
+  end;
 end;
 
 procedure TOrderTests.TestCalculateTotal_ValidOrder;
@@ -55,7 +69,7 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FConnection;
-    FDQuery.SQL.Text := 'DECLARE @Total DECIMAL(18,2); EXEC @Total = CalculateOrderTotal :OrderID; SELECT @Total AS Total;';
+    FDQuery.SQL.Text := 'DECLARE @total DECIMAL(19, 6); EXEC @total = CalculateOrderTotal @order_id = :OrderID, @total_value = @total; SELECT @Total AS Total;';
     FDQuery.ParamByName('OrderID').AsInteger := 1;
     FDQuery.Open;
 
@@ -81,7 +95,7 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FConnection;
-    FDQuery.SQL.Text := 'DECLARE @Total DECIMAL(18,2); EXEC @Total = CalculateOrderTotal :OrderID; SELECT @Total AS Total;';
+    FDQuery.SQL.Text := 'DECLARE @total DECIMAL(19, 6); EXEC @total = CalculateOrderTotal @order_id = :OrderID, @total_value = @total; SELECT @Total AS Total;';
     FDQuery.ParamByName('OrderID').AsInteger := 999;
 
     FDQuery.Open;
@@ -107,7 +121,7 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FConnection;
-    FDQuery.SQL.Text := 'DECLARE @Total DECIMAL(18,2); EXEC @Total = CalculateOrderTotal :OrderID;';
+    FDQuery.SQL.Text := 'DECLARE @total DECIMAL(19, 6); EXEC @total = CalculateOrderTotal @order_id = :OrderID, @total_value = @total; SELECT @Total AS Total;';
     FDQuery.ParamByName('OrderID').AsInteger := -1;
 
     try
