@@ -7,8 +7,7 @@ uses
   Product.Model in 'Product.Model.pas',
   Order.Model in 'Order.Model.pas',
   Order.ViewModel in 'Order.ViewModel.pas',
-  Auxiliary.Form in 'Auxiliary.Form.pas' {frmAuxiliary},
-  Order.Tests in 'Order.Tests.pas';
+  Auxiliary.Form in 'Auxiliary.Form.pas' {frmAuxiliary};
 
 {$R *.res}
 

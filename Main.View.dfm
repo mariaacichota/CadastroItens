@@ -24,7 +24,6 @@ object frmMain: TfrmMain
     TabOrder = 0
     Properties.ActivePage = tabOrder
     Properties.CustomButtons.Buttons = <>
-    ExplicitHeight = 468
     ClientRectBottom = 498
     ClientRectLeft = 4
     ClientRectRight = 801
@@ -32,7 +31,6 @@ object frmMain: TfrmMain
     object tabOrder: TcxTabSheet
       Caption = 'Order'
       ImageIndex = 0
-      ExplicitHeight = 440
       object pnlGeneral: TPanel
         Left = 0
         Top = 0
@@ -40,7 +38,6 @@ object frmMain: TfrmMain
         Height = 474
         Align = alClient
         TabOrder = 0
-        ExplicitHeight = 440
         object pnlGrid: TPanel
           Left = 1
           Top = 105
@@ -48,7 +45,6 @@ object frmMain: TfrmMain
           Height = 368
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 334
           object gridOrderItems: TDBGrid
             Left = 1
             Top = 1
@@ -70,9 +66,6 @@ object frmMain: TfrmMain
             Height = 41
             Align = alBottom
             TabOrder = 1
-            ExplicitLeft = 304
-            ExplicitTop = 152
-            ExplicitWidth = 185
             object btnRemoveItem: TcxButton
               Left = 657
               Top = 6
@@ -245,7 +238,6 @@ object frmMain: TfrmMain
     object tabProduct: TcxTabSheet
       Caption = 'Product'
       ImageIndex = 1
-      ExplicitHeight = 440
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -253,7 +245,6 @@ object frmMain: TfrmMain
         Height = 474
         Align = alClient
         TabOrder = 0
-        ExplicitHeight = 440
         object Panel2: TPanel
           Left = 1
           Top = 105
@@ -261,7 +252,6 @@ object frmMain: TfrmMain
           Height = 368
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 334
           object gridProducts: TDBGrid
             Left = 1
             Top = 1
@@ -425,7 +415,7 @@ object frmMain: TfrmMain
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45555.151772569400000000
-    ReportOptions.LastChange = 45555.823914189820000000
+    ReportOptions.LastChange = 45556.224073784720000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -440,7 +430,7 @@ object frmMain: TfrmMain
       end
       item
         DataSet = frxDBOrder
-        DataSetName = 'frxDBDataSet1'
+        DataSetName = 'frxDBDOrder'
       end>
     Variables = <>
     Style = <>
@@ -463,7 +453,7 @@ object frmMain: TfrmMain
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Left = 204.094620000000000000
-          Top = 6.102350000000001000
+          Top = 6.102350000000000000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -477,7 +467,7 @@ object frmMain: TfrmMain
         end
         object Memo2: TfrxMemoView
           Left = 268.346630000000000000
-          Top = 6.102350000000001000
+          Top = 6.102350000000000000
           Width = 464.882190000000000000
           Height = 18.897650000000000000
           Memo.UTF8W = (
@@ -595,7 +585,7 @@ object frmMain: TfrmMain
         end
         object Picture2: TfrxPictureView
           Left = 7.559060000000000000
-          Top = 3.779530000000001000
+          Top = 3.779530000000000000
           Width = 196.535560000000000000
           Height = 79.370130000000000000
           HightQuality = False
@@ -627,6 +617,220 @@ object frmMain: TfrmMain
         Height = 22.677180000000000000
         Top = 445.984540000000000000
         Width = 718.110700000000000000
+      end
+      object GroupHeader1: TfrxGroupHeader
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 317.480520000000000000
+        Width = 718.110700000000000000
+        Condition = 'frxDBDOrder."ClientID"'
+        object Memo22: TfrxMemoView
+          Top = 3.779530000000020000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Order ID')
+          ParentFont = False
+        end
+        object Memo23: TfrxMemoView
+          Left = 56.692950000000000000
+          Top = 3.779530000000020000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Order Date')
+          ParentFont = False
+        end
+        object Memo24: TfrxMemoView
+          Left = 128.504020000000000000
+          Top = 3.779530000000020000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Product ID')
+          ParentFont = False
+        end
+        object Memo25: TfrxMemoView
+          Left = 200.315090000000000000
+          Top = 3.779530000000020000
+          Width = 234.330860000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Product Name')
+          ParentFont = False
+        end
+        object Memo26: TfrxMemoView
+          Left = 434.645950000000000000
+          Top = 3.779530000000020000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Quantity')
+          ParentFont = False
+        end
+        object Memo27: TfrxMemoView
+          Left = 491.338900000000000000
+          Top = 3.779530000000020000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Unit Price')
+          ParentFont = False
+        end
+        object Memo28: TfrxMemoView
+          Left = 559.370440000000000000
+          Top = 3.779530000000020000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Item Total')
+          ParentFont = False
+        end
+        object Memo29: TfrxMemoView
+          Left = 638.740570000000000000
+          Top = 3.779530000000020000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Order Total')
+          ParentFont = False
+        end
+      end
+      object MasterData2: TfrxMasterData
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 362.834880000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBOrder
+        DataSetName = 'frxDBDOrder'
+        RowCount = 0
+        object Memo30: TfrxMemoView
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          DataField = 'OrderID'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."OrderID"]')
+        end
+        object Memo31: TfrxMemoView
+          Left = 56.692950000000000000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          DataField = 'OrderDate'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."OrderDate"]')
+        end
+        object Memo32: TfrxMemoView
+          Left = 128.504020000000000000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          DataField = 'ProductID'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."ProductID"]')
+        end
+        object Memo33: TfrxMemoView
+          Left = 200.315090000000000000
+          Width = 234.330860000000000000
+          Height = 18.897650000000000000
+          DataField = 'ProductName'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."ProductName"]')
+        end
+        object Memo34: TfrxMemoView
+          Left = 434.645950000000000000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          DataField = 'Quantity'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."Quantity"]')
+        end
+        object Memo35: TfrxMemoView
+          Left = 491.338900000000000000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          DataField = 'UnitPrice'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."UnitPrice"]')
+        end
+        object Memo36: TfrxMemoView
+          Left = 559.370440000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'ItemTotal'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."ItemTotal"]')
+        end
+        object Memo37: TfrxMemoView
+          Left = 638.740570000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'OrderTotal'
+          DataSet = frxDBOrder
+          DataSetName = 'frxDBDOrder'
+          Memo.UTF8W = (
+            '[frxDBDOrder."OrderTotal"]')
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
@@ -667,19 +871,25 @@ object frmMain: TfrmMain
           Top = 37.795300000000000000
           Width = 162.519790000000000000
           Height = 18.897650000000000000
+          DataField = 'ClientPhone'
+          DataSet = frxDBClient
+          DataSetName = 'frxDBClient'
           Memo.UTF8W = (
-            'frxDBClient."ClientPhone"')
+            '[frxDBClient."ClientPhone"]')
         end
         object Memo18: TfrxMemoView
           Left = 45.354360000000000000
-          Top = 56.692950000000030000
+          Top = 56.692950000000000000
           Width = 181.417440000000000000
           Height = 18.897650000000000000
+          DataField = 'ClientEmail'
+          DataSet = frxDBClient
+          DataSetName = 'frxDBClient'
           Memo.UTF8W = (
-            'frxDBClient."ClientEmail"')
+            '[frxDBClient."ClientEmail"]')
         end
         object Memo13: TfrxMemoView
-          Top = 18.897649999999940000
+          Top = 18.897649999999900000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -696,8 +906,11 @@ object frmMain: TfrmMain
           Top = 18.897650000000000000
           Width = 464.882190000000000000
           Height = 18.897650000000000000
+          DataField = 'ClientAddress'
+          DataSet = frxDBClient
+          DataSetName = 'frxDBClient'
           Memo.UTF8W = (
-            'frxDBClient."ClientAddress"')
+            '[frxDBClient."ClientAddress"]')
         end
         object Memo19: TfrxMemoView
           Width = 52.913420000000000000
@@ -715,198 +928,11 @@ object frmMain: TfrmMain
           Left = 52.913420000000000000
           Width = 464.882190000000000000
           Height = 18.897650000000000000
+          DataField = 'ClientName'
+          DataSet = frxDBClient
+          DataSetName = 'frxDBClient'
           Memo.UTF8W = (
-            'frxDBClient."ClientName"')
-        end
-      end
-      object GroupHeader1: TfrxGroupHeader
-        FillType = ftBrush
-        Height = 22.677180000000000000
-        Top = 317.480520000000000000
-        Width = 718.110700000000000000
-        Condition = '<frxDBDataSet1."client_id">'
-        object Memo22: TfrxMemoView
-          Top = 3.779530000000022000
-          Width = 56.692950000000010000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Order ID')
-          ParentFont = False
-        end
-        object Memo23: TfrxMemoView
-          Left = 56.692950000000010000
-          Top = 3.779530000000022000
-          Width = 71.811070000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Order Date')
-          ParentFont = False
-        end
-        object Memo24: TfrxMemoView
-          Left = 128.504020000000000000
-          Top = 3.779530000000022000
-          Width = 71.811070000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Product ID')
-          ParentFont = False
-        end
-        object Memo25: TfrxMemoView
-          Left = 200.315090000000000000
-          Top = 3.779530000000022000
-          Width = 234.330860000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Product Name')
-          ParentFont = False
-        end
-        object Memo26: TfrxMemoView
-          Left = 434.645950000000000000
-          Top = 3.779530000000022000
-          Width = 56.692950000000010000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Quantity')
-          ParentFont = False
-        end
-        object Memo27: TfrxMemoView
-          Left = 491.338900000000000000
-          Top = 3.779530000000022000
-          Width = 68.031540000000010000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Unit Price')
-          ParentFont = False
-        end
-        object Memo28: TfrxMemoView
-          Left = 559.370440000000000000
-          Top = 3.779530000000022000
-          Width = 79.370130000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Item Total')
-          ParentFont = False
-        end
-        object Memo29: TfrxMemoView
-          Left = 638.740570000000000000
-          Top = 3.779530000000022000
-          Width = 79.370130000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Order Total')
-          ParentFont = False
-        end
-      end
-      object MasterData2: TfrxMasterData
-        FillType = ftBrush
-        Height = 22.677180000000000000
-        Top = 362.834880000000000000
-        Width = 718.110700000000000000
-        DataSet = frxDBOrder
-        DataSetName = 'frxDBDataSet1'
-        RowCount = 0
-        object Memo30: TfrxMemoView
-          Width = 56.692950000000010000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."order_id"')
-        end
-        object Memo31: TfrxMemoView
-          Left = 56.692950000000010000
-          Width = 71.811070000000000000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."OrderDate"')
-        end
-        object Memo32: TfrxMemoView
-          Left = 128.504020000000000000
-          Width = 71.811070000000000000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."ProductID"')
-        end
-        object Memo33: TfrxMemoView
-          Left = 200.315090000000000000
-          Width = 234.330860000000000000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."ProductName"')
-        end
-        object Memo34: TfrxMemoView
-          Left = 434.645950000000000000
-          Width = 56.692950000000010000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."Quantity"')
-        end
-        object Memo35: TfrxMemoView
-          Left = 491.338900000000000000
-          Width = 68.031540000000010000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."UnitPrice"')
-        end
-        object Memo36: TfrxMemoView
-          Left = 559.370440000000000000
-          Width = 79.370130000000000000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."ItemTotal"')
-        end
-        object Memo37: TfrxMemoView
-          Left = 638.740570000000000000
-          Width = 79.370130000000000000
-          Height = 18.897650000000000000
-          Memo.UTF8W = (
-            'frxDBDataSet1."OrderTotal"')
+            '[frxDBClient."ClientName"]')
         end
       end
     end
@@ -937,7 +963,8 @@ object frmMain: TfrmMain
     SQL.Strings = (
       'SELECT '#10'  '
       '  o.order_id AS OrderID,'#10'  '
-      '  o.order_date AS OrderDate,'#10'  '
+      '  o.order_date AS OrderDate,'#10' '
+      '  o.client_id AS ClientID,'
       '  i.item_id AS ProductID,'#10'  '
       '  p.item_name AS ProductName,'#10'  '
       '  i.quantity AS Quantity,'#10'  '
@@ -958,15 +985,21 @@ object frmMain: TfrmMain
     ParamData = <
       item
         Name = 'CLIENTID'
+        DataType = ftInteger
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'STARTDATE'
+        DataType = ftDate
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'ENDDATE'
+        DataType = ftDate
         ParamType = ptInput
+        Value = Null
       end>
   end
   object qryClient: TFDQuery
@@ -984,11 +1017,13 @@ object frmMain: TfrmMain
     ParamData = <
       item
         Name = 'CLIENTID'
+        DataType = ftInteger
         ParamType = ptInput
+        Value = Null
       end>
   end
   object frxDBOrder: TfrxDBDataset
-    UserName = 'frxDBDataSet1'
+    UserName = 'frxDBDOrder'
     CloseDataSource = False
     DataSet = qryOrder
     BCDToCurrency = False
