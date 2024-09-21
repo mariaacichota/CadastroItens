@@ -19,8 +19,8 @@ VALUES
 
 INSERT INTO tab_orders_item(order_id, item_id, quantity, unit_price)
 VALUES 
-(1, 1, 1, 1500.00),  
-(1, 2, 1, 800.00);
+(2, 1, 1, 1500.00),  
+(2, 2, 1, 800.00);
 
 INSERT INTO tab_orders_item (order_id, item_id, quantity, unit_price)
 VALUES 

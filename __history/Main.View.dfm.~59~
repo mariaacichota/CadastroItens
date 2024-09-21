@@ -58,7 +58,6 @@ object frmMain: TfrmMain
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
-            OnKeyPress = gridOrderItemsKeyPress
             Columns = <
               item
                 Expanded = False
@@ -1620,7 +1619,6 @@ object frmMain: TfrmMain
     Top = 369
   end
   object qryOrderItems: TFDQuery
-    OnNewRecord = qryOrderItemsNewRecord
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT '

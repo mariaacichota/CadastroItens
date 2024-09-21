@@ -104,6 +104,7 @@ object frmMain: TfrmMain
             Height = 41
             Align = alBottom
             TabOrder = 1
+            ExplicitTop = 332
             object btnRemoveItem: TcxButton
               Left = 657
               Top = 6

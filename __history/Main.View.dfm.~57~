@@ -58,7 +58,6 @@ object frmMain: TfrmMain
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
-            OnKeyPress = gridOrderItemsKeyPress
             Columns = <
               item
                 Expanded = False
@@ -303,34 +302,6 @@ object frmMain: TfrmMain
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
-            Columns = <
-              item
-                Expanded = False
-                FieldName = 'ProductID'
-                ReadOnly = True
-                Title.Caption = 'Product ID'
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'ProductName'
-                Title.Caption = 'Name'
-                Width = 227
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'ProductDescription'
-                Title.Caption = 'Description'
-                Width = 288
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'ProductPrice'
-                Title.Caption = 'Price'
-                Visible = True
-              end>
           end
         end
         object Panel3: TPanel
@@ -1620,7 +1591,6 @@ object frmMain: TfrmMain
     Top = 369
   end
   object qryOrderItems: TFDQuery
-    OnNewRecord = qryOrderItemsNewRecord
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT '

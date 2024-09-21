@@ -101,6 +101,7 @@ type
     procedure btnDeleteOrderClick(Sender: TObject);
     procedure btnAddItemClick(Sender: TObject);
     procedure btnRemoveItemClick(Sender: TObject);
+    procedure gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
   private
     FProductViewModel: TProductViewModel;
     FOrderViewModel: TOrderViewModel;
@@ -108,7 +109,7 @@ type
     procedure ClearOrderForm;
     procedure ClearProductForm;
   public
-    { Public declarations }
+    function GetFDConnection: TFDConnection;
   end;
 
 var
@@ -145,7 +146,7 @@ procedure TfrmMain.btnLoadOrderClick(Sender: TObject);
 begin
   FOrderViewModel.LoadOrder(StrToInt(edtOrderId.Text));
   qryOrderItems.Close;
-  qryOrderItems.ParamByName('cod_order').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.ParamByName('OrderID').AsInteger := StrToInt(edtOrderId.Text);
   qryOrderItems.Open;
   gridOrderItems.Refresh;
   edtOrderId.Text := IntToStr(FOrderViewModel.Order.OrderId);
@@ -243,21 +244,54 @@ begin
 end;
 
 procedure TfrmMain.GenerateReport;
+var
+  StartDate, EndDate: TDate;
 begin
   qryOrder.Close;
   qryOrder.ParamByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
 
-  Application.CreateForm(TfrmAuxiliary, frmAuxiliary);
-  qryOrder.ParamByName('StartDate').AsDate := frmAuxiliary.edtStartDate;
-  qryOrder.ParamByName('EndDate').AsDate := frmAuxiliary.edtEndDate;
-  qryOrder.Open;
+  if not Assigned(frmAuxiliary) then
+    Application.CreateForm(TfrmAuxiliary, frmAuxiliary);
 
-  qryClient.Close;
-  qryClient.ParamByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
-  qryClient.Open;
+  if frmAuxiliary.ShowModal = mrOk then
+  begin
+    try
+      StartDate := frmAuxiliary.edtStartDate.Date;
+      EndDate := frmAuxiliary.edtEndDate.Date;
+
+      qryOrder.ParamByName('StartDate').AsDate := StartDate;
+      qryOrder.ParamByName('EndDate').AsDate := EndDate;
+      qryOrder.Open;
+
+      qryClient.Close;
+      qryClient.ParamByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
+      qryClient.Open;
+    except
+      on E: Exception do
+        ShowMessage('Error: ' + E.Message);
+    end;
+  end;
 
   frxReportOrders.ShowReport;
 
+end;
+
+function TfrmMain.GetFDConnection: TFDConnection;
+begin
+   Result := FDConnection1;
+end;
+
+procedure TfrmMain.gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
+var
+  productID: Integer;
+begin
+  if Key = #46 then
+  begin
+    productID := qryOrderItems.FieldByName('ProductID').AsInteger;
+
+    if (productID > 0) then
+      TOrderViewModel.RemoveOrderItem(productID);
+  end;
 end;
 
 procedure TfrmMain.qryProductsAfterScroll(DataSet: TDataSet);

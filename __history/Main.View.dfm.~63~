@@ -95,6 +95,11 @@ object frmMain: TfrmMain
                 FieldName = 'OrderTotal'
                 Title.Caption = 'Order Total'
                 Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'order_total'
+                Visible = True
               end>
           end
           object pnlControlItem: TPanel
@@ -104,6 +109,7 @@ object frmMain: TfrmMain
             Height = 41
             Align = alBottom
             TabOrder = 1
+            ExplicitTop = 332
             object btnRemoveItem: TcxButton
               Left = 657
               Top = 6

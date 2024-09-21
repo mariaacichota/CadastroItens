@@ -101,12 +101,15 @@ type
     procedure btnDeleteOrderClick(Sender: TObject);
     procedure btnAddItemClick(Sender: TObject);
     procedure btnRemoveItemClick(Sender: TObject);
+    procedure gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
+    procedure qryOrderItemsNewRecord(DataSet: TDataSet);
   private
     FProductViewModel: TProductViewModel;
     FOrderViewModel: TOrderViewModel;
     procedure GenerateReport;
     procedure ClearOrderForm;
     procedure ClearProductForm;
+    procedure LoadOrderItems;
   public
     function GetFDConnection: TFDConnection;
   end;
@@ -144,10 +147,7 @@ end;
 procedure TfrmMain.btnLoadOrderClick(Sender: TObject);
 begin
   FOrderViewModel.LoadOrder(StrToInt(edtOrderId.Text));
-  qryOrderItems.Close;
-  qryOrderItems.ParamByName('cod_order').AsInteger := StrToInt(edtOrderId.Text);
-  qryOrderItems.Open;
-  gridOrderItems.Refresh;
+  LoadOrderItems;
   edtOrderId.Text := IntToStr(FOrderViewModel.Order.OrderId);
   edtClientId.Text := IntToStr(FOrderViewModel.Order.ClientId);
   lblClientName.Caption := UpperCase(FOrderViewModel.Order.ClientName);
@@ -278,6 +278,52 @@ end;
 function TfrmMain.GetFDConnection: TFDConnection;
 begin
    Result := FDConnection1;
+end;
+
+procedure TfrmMain.gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
+var
+  productID: Integer;
+begin
+  if Key = #46 then
+  begin
+    productID := qryOrderItems.FieldByName('ProductID').AsInteger;
+
+    if (productID > 0) then
+      FOrderViewModel.RemoveOrderItem(productID);
+  end;
+end;
+
+procedure TfrmMain.LoadOrderItems;
+begin
+  qryOrderItems.Close;
+  qryOrderItems.SQL.Text := 'SELECT ' +
+    'o.order_id AS OrderID, ' +
+    'o.client_id AS ClientID, ' +
+    'c.client_name AS ClientName, ' +
+    'o.order_date AS OrderDate, ' +
+    'i.item_id AS ProductID, ' +
+    'p.item_name AS ProductName, ' +
+    'i.quantity AS Quantity, ' +
+    'i.unit_price AS UnitPrice, ' +
+    'CAST((i.quantity * i.unit_price) AS DECIMAL(18, 2)) AS ItemTotal, ' +
+    'o.total_value AS OrderTotal ' +
+    'FROM tab_orders o ' +
+    'JOIN tab_orders_item i ON o.order_id = i.order_id ' +
+    'JOIN tab_item p ON i.item_id = p.item_id ' +
+    'JOIN tab_clients c ON c.client_id = o.client_id ' +
+    'WHERE o.order_id = :OrderID ' +
+    'ORDER BY o.order_date, o.order_id;';
+
+  qryOrderItems.ParamByName('OrderID').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.Open;
+
+//  gridOrderItems.Refresh;
+end;
+
+procedure TfrmMain.qryOrderItemsNewRecord(DataSet: TDataSet);
+begin
+  qryOrderItems.FieldByName('OrderID').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.FieldByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
 end;
 
 procedure TfrmMain.qryProductsAfterScroll(DataSet: TDataSet);

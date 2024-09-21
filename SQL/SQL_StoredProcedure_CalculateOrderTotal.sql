@@ -13,8 +13,8 @@ BEGIN
 END;
 
 
---DECLARE @total DECIMAL(19, 6);
+DECLARE @total DECIMAL(19, 6);
 
---EXEC CalculateOrderTotal @order_id = 1, @total_value = @total OUTPUT;
+EXEC CalculateOrderTotal @order_id = 1, @total_value = @total OUTPUT;
 
---SELECT @total AS TotalValue;
+SELECT @total AS TotalValue;

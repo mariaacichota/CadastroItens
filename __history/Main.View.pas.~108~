@@ -101,6 +101,8 @@ type
     procedure btnDeleteOrderClick(Sender: TObject);
     procedure btnAddItemClick(Sender: TObject);
     procedure btnRemoveItemClick(Sender: TObject);
+    procedure gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
+    procedure qryOrderItemsNewRecord(DataSet: TDataSet);
   private
     FProductViewModel: TProductViewModel;
     FOrderViewModel: TOrderViewModel;
@@ -108,7 +110,7 @@ type
     procedure ClearOrderForm;
     procedure ClearProductForm;
   public
-    { Public declarations }
+    function GetFDConnection: TFDConnection;
   end;
 
 var
@@ -145,7 +147,7 @@ procedure TfrmMain.btnLoadOrderClick(Sender: TObject);
 begin
   FOrderViewModel.LoadOrder(StrToInt(edtOrderId.Text));
   qryOrderItems.Close;
-  qryOrderItems.ParamByName('cod_order').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.ParamByName('OrderID').AsInteger := StrToInt(edtOrderId.Text);
   qryOrderItems.Open;
   gridOrderItems.Refresh;
   edtOrderId.Text := IntToStr(FOrderViewModel.Order.OrderId);
@@ -273,6 +275,30 @@ begin
 
   frxReportOrders.ShowReport;
 
+end;
+
+function TfrmMain.GetFDConnection: TFDConnection;
+begin
+   Result := FDConnection1;
+end;
+
+procedure TfrmMain.gridOrderItemsKeyPress(Sender: TObject; var Key: Char);
+var
+  productID: Integer;
+begin
+  if Key = #46 then
+  begin
+    productID := qryOrderItems.FieldByName('ProductID').AsInteger;
+
+    if (productID > 0) then
+      FOrderViewModel.RemoveOrderItem(productID);
+  end;
+end;
+
+procedure TfrmMain.qryOrderItemsNewRecord(DataSet: TDataSet);
+begin
+  qryOrderItems.FieldByName('OrderID').AsInteger := StrToInt(edtOrderId.Text);
+  qryOrderItems.FieldByName('ClientID').AsInteger := StrToInt(edtClientId.Text);
 end;
 
 procedure TfrmMain.qryProductsAfterScroll(DataSet: TDataSet);
